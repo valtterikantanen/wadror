@@ -1,24 +1,5 @@
-# README
+# Web-palvelinohjelmointi Ruby on Rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Sovellus on laadittu Helsingin yliopiston syksyn 2022 kurssille [Web-palvelinohjelmointi Ruby on Rails](https://github.com/mluukkai/WebPalvelinohjelmointi2022/blob/main/wadror.md).
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Sovellusta voi käyttää [täällä](https://polished-sun-1209.fly.dev/).
