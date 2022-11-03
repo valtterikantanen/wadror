@@ -7,4 +7,6 @@ Rails.application.routes.draw do
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   get "ratings", to: "ratings#index"
+  post "ratings", to: "ratings#create"
+  get "ratings/new", to: "ratings#new"
 end
