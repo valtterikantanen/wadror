@@ -15,10 +15,10 @@
   </p>
 
   <h3>Members</h3>
-  <% beer_club.members.each do |member| %>
   <ul>
-    <li><%= link_to member.username, member %></li>
+    <% beer_club.members.each do |member| %>
+      <li><%= link_to member.username, member %></li>
+    <% end %>
   </ul>
-  <% end %>
 
 </div>
