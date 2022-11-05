@@ -5,5 +5,13 @@ class Brewery < ApplicationRecord
   has_many :ratings, through: :beers
 
   validates :name, presence: true
-  validates :year, numericality: { greater_than_or_equal_to: 1040, less_than_or_equal_to: 2022, only_integer: true }
+  validates :year, numericality: { only_integer: true }
+  validate :year_must_be_in_the_correct_range
+
+  def year_must_be_in_the_correct_range
+    current_year = Time.now.year
+    return unless !year.nil? && (year < 1040 || year > current_year)
+
+    errors.add(:year, "must be between 1040 and #{current_year}")
+  end
 end
