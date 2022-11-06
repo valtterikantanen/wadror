@@ -17,7 +17,11 @@
 <h4>Ratings</h4>
 <ul>
   <% @user.ratings.each do |rating| %>
-    <li><%= rating %> <%= link_to "Delete", rating, data: { "turbo-method": :delete } %></li>
+    <li><%= rating %>
+      <% if @user == current_user %>
+        <%= link_to "Delete", rating, data: { "turbo-method": :delete } %>
+      <% end %>
+    </li>
   <% end %>
 </ul>
 
