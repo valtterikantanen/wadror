@@ -13,7 +13,7 @@ class MembershipsController < ApplicationController
   # GET /memberships/new
   def new
     @membership = Membership.new
-    current_users_clubs = Membership.where(user_id: current_user.id).map { |membership| membership.beer_club_id }
+    current_users_clubs = Membership.where(user_id: current_user.id).map(&:beer_club_id)
     @beer_clubs = BeerClub.where.not(id: current_users_clubs)
   end
 
