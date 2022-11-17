@@ -52,7 +52,7 @@ describe "Rating" do
 
   it "when deleting own rating it is removed" do
     visit user_path(user)
-    click_link("", href: "/ratings/1")
+    click_link("", href: "/ratings/#{user.ratings.first.id}")
 
     expect(Rating.count).to eq(4)
     expect(page).to have_content "Has made 3 ratings"
