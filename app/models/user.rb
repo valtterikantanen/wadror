@@ -20,8 +20,16 @@ class User < ApplicationRecord
   def favorite_style
     return nil if ratings.empty?
 
-    average_scores = Beer.joins(:ratings).select("AVG(ratings.score) as average_score, style").group("style")
+    average_scores = Beer.joins(:ratings).select("beers.*, AVG(ratings.score) as average_score").group("style")
 
     average_scores.max_by(&:average_score).style
+  end
+
+  def favorite_brewery
+    return nil if ratings.empty?
+
+    average_scores = Brewery.joins(:ratings).select("breweries.*, AVG(ratings.score) as average_score").group("name")
+
+    average_scores.max_by(&:average_score).name
   end
 end
