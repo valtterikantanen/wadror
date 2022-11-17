@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2022-11-17T22:54:25+02:00">2022-11-17T22:54:25+02:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2022-11-18T00:12:31+02:00">2022-11-18T00:12:31+02:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -23,14 +23,14 @@
     <span class="group_name">All Files</span>
     (<span class="covered_percent">
       <span class="red">
-  46.99%
+  46.67%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.9
+         1.86
        </span>
     </span> hits/line
     )
@@ -43,11 +43,11 @@
   </div>
 
   <div class="t-line-summary">
-    <b>332</b> relevant lines,
-    <span class="green"><b>156</b> lines covered</span> and
+    <b>330</b> relevant lines,
+    <span class="green"><b>154</b> lines covered</span> and
     <span class="red"><b>176</b> lines missed. </span>
     (<span class="red">
-  46.99%
+  46.67%
 </span>
 )
   </div>
@@ -348,11 +348,11 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#876ae2b8e5559dab7aa2a9d7d3df71314e4cad3e" class="src_link" title="app/models/user.rb">app/models/user.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">35</td>
-            <td class="cell--number">20</td>
-            <td class="cell--number">20</td>
+            <td class="cell--number">31</td>
+            <td class="cell--number">18</td>
+            <td class="cell--number">18</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">4.15</td>
+            <td class="cell--number">3.72</td>
             
           </tr>
         
@@ -594,14 +594,14 @@
     <span class="group_name">Models</span>
     (<span class="covered_percent">
       <span class="green">
-  95.08%
+  94.92%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         4.56
+         4.44
        </span>
     </span> hits/line
     )
@@ -614,11 +614,11 @@
   </div>
 
   <div class="t-line-summary">
-    <b>61</b> relevant lines,
-    <span class="green"><b>58</b> lines covered</span> and
+    <b>59</b> relevant lines,
+    <span class="green"><b>56</b> lines covered</span> and
     <span class="red"><b>3</b> lines missed. </span>
     (<span class="green">
-  95.08%
+  94.92%
 </span>
 )
   </div>
@@ -721,11 +721,11 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#876ae2b8e5559dab7aa2a9d7d3df71314e4cad3e" class="src_link" title="app/models/user.rb">app/models/user.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">35</td>
-            <td class="cell--number">20</td>
-            <td class="cell--number">20</td>
+            <td class="cell--number">31</td>
+            <td class="cell--number">18</td>
+            <td class="cell--number">18</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">4.15</td>
+            <td class="cell--number">3.72</td>
             
           </tr>
         
@@ -7728,8 +7728,8 @@
     
 
     <div class="t-line-summary">
-      <b>20</b> relevant lines.
-      <span class="green"><b>20</b> lines covered</span> and
+      <b>18</b> relevant lines.
+      <span class="green"><b>18</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
 
@@ -7989,7 +7989,7 @@
 
             
 
-            <code class="ruby">    average_scores = Beer.joins(:ratings).select(&quot;beers.*, AVG(ratings.score) as average_score&quot;).group(&quot;style&quot;)</code>
+            <code class="ruby">    Beer.joins(:ratings).where(ratings: { user_id: id }).select(&quot;style&quot;).group(&quot;style&quot;).order(&quot;AVG(score) DESC&quot;).limit(1).first.style</code>
           </li>
         </div>
       
@@ -8000,34 +8000,12 @@
 
             
 
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="8" data-linenumber="25">
-            <span class="hits">8</span>
-            
-
-            
-
-            <code class="ruby">    average_scores.max_by(&amp;:average_score).style</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="26">
-            
-            
-
-            
-
             <code class="ruby">  end</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="27">
+          <li class="never" data-hits="" data-linenumber="25">
             
             
 
@@ -8038,7 +8016,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="28">
+          <li class="covered" data-hits="1" data-linenumber="26">
             <span class="hits">1</span>
             
 
@@ -8049,7 +8027,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="17" data-linenumber="29">
+          <li class="covered" data-hits="17" data-linenumber="27">
             <span class="hits">17</span>
             
 
@@ -8060,51 +8038,29 @@
         </div>
       
         <div>
+          <li class="never" data-hits="" data-linenumber="28">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="8" data-linenumber="29">
+            <span class="hits">8</span>
+            
+
+            
+
+            <code class="ruby">    Brewery.joins(:ratings).where(ratings: { user_id: id }).select(&quot;name&quot;).group(&quot;name&quot;).order(&quot;AVG(score) DESC&quot;).limit(1).first.name</code>
+          </li>
+        </div>
+      
+        <div>
           <li class="never" data-hits="" data-linenumber="30">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="8" data-linenumber="31">
-            <span class="hits">8</span>
-            
-
-            
-
-            <code class="ruby">    average_scores = Brewery.joins(:ratings).select(&quot;breweries.*, AVG(ratings.score) as average_score&quot;).group(&quot;name&quot;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="32">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="8" data-linenumber="33">
-            <span class="hits">8</span>
-            
-
-            
-
-            <code class="ruby">    average_scores.max_by(&amp;:average_score).name</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="34">
             
             
 
@@ -8115,7 +8071,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="35">
+          <li class="never" data-hits="" data-linenumber="31">
             
             
 
