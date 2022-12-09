@@ -63,10 +63,6 @@ Style/BeginBlock:
 Style/OpenStructUse:
   Enabled: false
 
-Naming/MethodParameterName:
-  AllowedNames:
-    - cn
-
 Metrics/BlockLength:
   Enabled: false
 
