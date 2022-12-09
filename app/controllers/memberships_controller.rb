@@ -28,7 +28,7 @@ class MembershipsController < ApplicationController
 
     respond_to do |format|
       if @membership.save
-        format.html { redirect_to beer_clubs_path, notice: "Membership was successfully created." }
+        format.html { redirect_to beer_club_url(@membership.beer_club), notice: "#{current_user.username} welcome to the club." }
         format.json { render :show, status: :created, location: @membership }
       else
         @beer_clubs = BeerClub.all
