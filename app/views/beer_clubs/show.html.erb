@@ -16,7 +16,13 @@
     <%= button_to "Destroy this beer club", @beer_club, method: :delete %>
   </div>
 
-  <% if not current_user.beer_clubs.include? @beer_club %>
+  <% if current_user.beer_clubs.include? @beer_club %>
+    <%= form_with(model: @membership, method: :delete) do |form| %>
+      <%= form.hidden_field :beer_club_id, value: @beer_club.id %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+      <%= form.submit "End the membership" %>
+    <% end %>
+  <% else %>
     <%= form_with(model: @membership) do |form| %>
       <%= form.hidden_field :beer_club_id, value: @beer_club.id %>
       <%= form.hidden_field :user_id, value: current_user.id %>
@@ -24,3 +30,4 @@
     <% end %>
   <% end %>
 <% end %>
+
