@@ -24,6 +24,17 @@ class BeermappingApi
     end
   end
 
+  def self.get_place(id)
+    url = "https://beermapping.com/webservice/locquery/#{key}/"
+
+    response = HTTParty.get "#{url}#{id}"
+    place = response.parsed_response["bmp_locations"]["location"]
+
+    return nil if place["id"] == "0"
+
+    Place.new(place)
+  end
+
   def self.key
     # API is not needed for testing
     return nil if Rails.env.test?
