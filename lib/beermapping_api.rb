@@ -1,7 +1,13 @@
 class BeermappingApi
   def self.places_in(city)
     city = city.downcase
-    Rails.cache.fetch(city) { get_places_in(city) }
+
+    places = Rails.cache.read(city)
+    return places if places
+
+    places = get_places_in(city)
+    Rails.cache.write(city, places, expires_in: 1.weeks)
+    places
   end
 
   def self.get_places_in(city)
