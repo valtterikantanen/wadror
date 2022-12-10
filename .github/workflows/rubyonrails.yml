@@ -12,6 +12,7 @@ on:
     branches: [ "main" ]
 env:
   BEER_MAPPING_API_KEY: ${{ secrets.BEER_MAPPING_API_KEY }}
+  WEATHERSTACK_API_KEY: ${{ secrets.WEATHERSTACK_API_KEY }}
 jobs:
   test:
     name: Run tests

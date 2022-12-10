@@ -4,6 +4,7 @@ class PlacesController < ApplicationController
 
   def search
     @places = BeermappingApi.places_in(params[:city])
+    @weather = WeatherstackApi.get_weather_data(params[:city])
 
     if @places.empty?
       redirect_to places_path, notice: "No places in #{params[:city]}"
