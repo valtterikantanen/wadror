@@ -17,15 +17,21 @@ class User < ApplicationRecord
     ratings.order(score: :desc).limit(1).first.beer
   end
 
+  def favorite_by(ratings, criteria)
+    ratings_by_criteria = ratings.group_by { |rating| rating.beer.send(criteria) }
+                                 .map { |key, value| [key, value.sum(&:score) / value.size] }
+    ratings_by_criteria.max_by(&:last).first
+  end
+
   def favorite_style
     return nil if ratings.empty?
 
-    Beer.joins(:ratings).where(ratings: { user_id: id }).select("style").group("style").order("AVG(score) DESC").limit(1).first.style
+    favorite_by(ratings, :style)
   end
 
   def favorite_brewery
     return nil if ratings.empty?
 
-    Brewery.joins(:ratings).where(ratings: { user_id: id }).select("name").group("name").order("AVG(score) DESC").limit(1).first.name
+    favorite_by(ratings, :brewery)
   end
 end

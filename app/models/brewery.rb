@@ -14,4 +14,8 @@ class Brewery < ApplicationRecord
 
     errors.add(:year, "must be between 1040 and #{current_year}")
   end
+
+  def to_s
+    name.to_s
+  end
 end

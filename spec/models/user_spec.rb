@@ -19,7 +19,7 @@ RSpec.describe User, type: :model do
   describe "with a proper password" do
     let(:user){ FactoryBot.create(:user) }
     let(:test_brewery) { Brewery.new name: "test", year: 2000 }
-    let(:test_beer) { Beer.create name: "testbeer", style: "teststyle", brewery: test_brewery }
+    let(:test_beer) { Beer.create name: "testbeer", brewery: test_brewery }
 
     it "is saved" do
       expect(user).to be_valid
@@ -85,6 +85,7 @@ RSpec.describe User, type: :model do
     end
 
     it "is the style of the only rated beer if only one rating" do
+      style = FactoryBot.create(:style)
       beer = FactoryBot.create(:beer)
       rating = FactoryBot.create(:rating, score: 20, beer: beer, user: user)
 
@@ -100,7 +101,7 @@ RSpec.describe User, type: :model do
         { style: "IPA", score: 15 }
       )
 
-      expect(user.favorite_style).to eq("IPA")
+      expect(user.favorite_style.to_s).to eq("IPA")
     end
   end
 
@@ -119,7 +120,7 @@ RSpec.describe User, type: :model do
       beer = FactoryBot.create(:beer)
       rating = FactoryBot.create(:rating, score: 20, beer: beer, user: user)
 
-      expect(user.favorite_brewery).to eq(beer.brewery.name)
+      expect(user.favorite_brewery.to_s).to eq(beer.brewery.name)
     end
 
     it "is the brewery with highest average rating if several rated" do
@@ -130,15 +131,16 @@ RSpec.describe User, type: :model do
         { brewery: brewdog, score: 30 },
         { brewery: brewdog, score: 34 },
         { brewery: testdog, score: 50 },
-        { brewery: testdog, score: 15 }
+        { brewery: testdog, score: 16 }
       )
 
-      expect(user.favorite_brewery).to eq(testdog.name)
+      expect(user.favorite_brewery.to_s).to eq(testdog.name)
     end
   end
 end
 
-def create_beer_with_style_and_rating(object, style, score)
+def create_beer_with_style_and_rating(object, style_name, score)
+  style = FactoryBot.create(:style, name: style_name)
   beer = FactoryBot.create(:beer, style: style)
   FactoryBot.create(:rating, beer: beer, score: score, user: object[:user])
 end
