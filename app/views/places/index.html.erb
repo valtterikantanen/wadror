@@ -15,10 +15,7 @@
   <img src="<%= @weather["current"]["weather_icons"][0] %>" alt="Weather icon">
 
   <p>Wind speed is <%= "%0.1f" % [@weather["current"]["wind_speed"].to_i / 3.6] %> m/s, direction <%= @weather["current"]["wind_dir"] %> (<%= @weather["current"]["wind_degree"] %>°) </p>
-
-  <% end %>
-
-
+<% end %>
 
 <% if @places %>
   <table>

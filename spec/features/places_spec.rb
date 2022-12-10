@@ -5,6 +5,7 @@ describe "Places" do
     allow(BeermappingApi).to receive(:places_in).with("kumpula").and_return(
       [Place.new(name: "Oljenkorsi", id: 1)]
     )
+    allow(WeatherstackApi).to receive(:get_weather_data).with("kumpula").and_return(nil)
 
     visit places_path
     fill_in("city", with: "kumpula")
@@ -18,6 +19,7 @@ describe "Places" do
       [Place.new(name: "Kaisla", id: 1),
        Place.new(name: "Pikkulintu", id: 2)]
     )
+    allow(WeatherstackApi).to receive(:get_weather_data).with("helsinki").and_return(nil)
 
     visit places_path
     fill_in("city", with: "helsinki")
@@ -29,6 +31,7 @@ describe "Places" do
 
   it "if no places are returned by the API, the correct notice is shown at the page" do
     allow(BeermappingApi).to receive(:places_in).with("helsinki").and_return([])
+    allow(WeatherstackApi).to receive(:get_weather_data).with("helsinki").and_return(nil)
 
     visit places_path
     fill_in("city", with: "helsinki")
