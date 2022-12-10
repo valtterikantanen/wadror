@@ -1,0 +1,9 @@
+<h1>Styles</h1>
+
+<% @styles.each do |style| %>
+  <div id="<%= dom_id style %>">
+    <p><strong>Name: </strong><%= style.name %></p>
+    <p><strong>Description: </strong><%= style.description %></p>
+    <p><%= link_to "Show this style", style %></p>
+  </div>
+<% end %>
