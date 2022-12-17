@@ -12,19 +12,21 @@
   <% end %>
 
   <div class="mb-1">
-    <label for="inputName" class="form-label">Name</label>
-    <input type="text" id="inputName" class="form-control">
+    <%= form.label :name, { class: "form-label" } %>
+    <%= form.text_field :name, { class: "form-control" } %>
   </div>
 
   <div class="mb-1">
-    <label for="inputFounded" class="form-label">Founded</label>
-    <input type="number" id="inputFounded" class="form-control">
+    <%= form.label :founded, { class: "form-label" } %>
+    <%= form.number_field :founded, { class: "form-control" } %>
   </div>
 
   <div class="mb-1">
-    <label for="inputCity" class="form-label">City</label>
-    <input type="text" id="inputCity" class="form-control">
+    <%= form.label :city, { class: "form-label" } %>
+    <%= form.text_field :city, { class: "form-control" } %>
   </div>
 
-  <button type="submit" class="btn btn-primary">Create beer club</button>
+  <div class="mb-1">
+    <%= form.submit "Create beer club", { class: "btn btn-primary" } %>
+  </div>
 <% end %>
