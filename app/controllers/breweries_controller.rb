@@ -67,6 +67,6 @@ class BreweriesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def brewery_params
-    params.require(:brewery).permit(:name, :year)
+    params.require(:brewery).permit(:name, :year, :active)
   end
 end
