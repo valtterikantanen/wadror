@@ -4,7 +4,8 @@ class BreweriesController < ApplicationController
 
   # GET /breweries or /breweries.json
   def index
-    @breweries = Brewery.all
+    @active_breweries = Brewery.where(active: true)
+    @retired_breweries = Brewery.where(active: [nil, false])
   end
 
   # GET /breweries/1 or /breweries/1.json
