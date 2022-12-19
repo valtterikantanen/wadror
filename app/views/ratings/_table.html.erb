@@ -1,0 +1,29 @@
+<% if !top_beers.nil? %>
+  <h3>Best beers</h3>
+<% elsif !top_breweries.nil? %>
+  <h3>Best breweries</h3>
+<% elsif !top_styles.nil? %>
+  <h3>Best styles</h3>
+<% end %>
+<table class="table">
+  <thead>
+  <tr>
+    <% if !top_beers.nil? %>
+      <th>Beer</th>
+    <% elsif !top_breweries.nil? %>
+      <th>Brewery</th>
+    <% elsif !top_styles.nil? %>
+      <th>Style</th>
+    <% end %>
+    <th>Average</th>
+  </tr>
+  </thead>
+  <% [top_beers, top_breweries, top_styles].select { |item| !item.nil? }.each do |group| %>
+    <% group.each do |item| %>
+      <tr>
+        <td><%= link_to item.name, item %></td>
+        <td><%= "%0.3f" % [item.average_rating] %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
