@@ -15,7 +15,7 @@
   </p>
 
   <% if !brewery.ratings.empty? %>
-    <p>Brewery has <%= pluralize(brewery.ratings.count, "rating") %> with an average of <%= "%0.3f" % [brewery.average_rating] %></p>
+    <p>Brewery has <%= pluralize(brewery.ratings.count, "rating") %> with an average of <%= round(brewery.average_rating) %></p>
   <% else %>
     <p>Brewery's beers have not yet been rated!</p>
   <% end %>

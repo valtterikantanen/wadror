@@ -22,7 +22,7 @@
     <% group.each do |item| %>
       <tr>
         <td><%= link_to item.name, item %></td>
-        <td><%= "%0.3f" % [item.average_rating] %></td>
+        <td><%= round(item.average_rating) %></td>
       </tr>
     <% end %>
   <% end %>

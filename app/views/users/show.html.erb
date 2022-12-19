@@ -6,7 +6,7 @@
 <p>
 Has made <%= pluralize(@user.ratings.count, "rating") -%>
 <% unless @user.ratings.empty? %>
-, average rating <%= "%0.3f" % [@user.average_rating] %>
+, average rating <%= round(@user.average_rating) %>
 <% end %>
 </p>
 

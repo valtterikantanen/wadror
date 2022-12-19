@@ -8,5 +8,9 @@ module ApplicationHelper
                                    class: "btn btn-danger")
     raw("#{edit} #{del}")
   end
+
+  def round(number)
+    "%0.1f" % [number]
+  end
 end
 
