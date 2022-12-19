@@ -18,6 +18,11 @@ class Brewery < ApplicationRecord
     errors.add(:year, "must be between 1040 and #{current_year}")
   end
 
+  def self.top(n)
+    sorted_by_ratings_desc = Brewery.all.sort_by{ |b| b.average_rating }.reverse
+    sorted_by_ratings_desc[0..n-1]
+  end
+
   def to_s
     name.to_s
   end

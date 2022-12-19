@@ -8,6 +8,11 @@ class Beer < ApplicationRecord
 
   validates :name, :style, presence: true
 
+  def self.top(n)
+    sorted_by_ratings_desc = Beer.all.sort_by{ |b| b.average_rating }.reverse
+    sorted_by_ratings_desc[0..n-1]
+  end
+
   def to_s
     "#{name} (#{brewery.name})"
   end
