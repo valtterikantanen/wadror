@@ -1,11 +1,7 @@
 <%= render @brewery %>
 
 <div>
-  <% if current_user %>
-    <%= link_to "Edit this brewery", edit_brewery_path(@brewery) %> |
-  <% end %>
-  <%= link_to "Back to breweries", breweries_path %>
-
-  <%= button_to "Destroy this brewery", @brewery, method: :delete if current_user %>
-
+  <%= edit_and_destroy_buttons(@brewery) %>
 </div>
+
+<%= link_to "Back to breweries", breweries_path %>
