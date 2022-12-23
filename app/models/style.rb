@@ -4,9 +4,8 @@ class Style < ApplicationRecord
   has_many :beers
   has_many :ratings, through: :beers
 
-  def self.top(n)
-    sorted_by_ratings_desc = Style.all.sort_by{ |s| s.average_rating }.reverse
-    sorted_by_ratings_desc[0..n-1]
+  def self.top(amount)
+    Style.all.sort_by(&:average_rating).reverse.first(amount)
   end
 
   def to_s

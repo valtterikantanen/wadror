@@ -13,4 +13,3 @@ module ApplicationHelper
     "%0.1f" % [number]
   end
 end
-

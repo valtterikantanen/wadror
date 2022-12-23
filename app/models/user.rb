@@ -35,8 +35,7 @@ class User < ApplicationRecord
     favorite_by(ratings, :brewery)
   end
 
-  def self.top(n)
-    sorted_by_num_of_ratings_desc = User.all.sort_by{ |u| u.ratings.count }.reverse
-    sorted_by_num_of_ratings_desc[0..n-1]
+  def self.top(amount)
+    User.all.sort_by{ |u| u.ratings.count }.reverse.first(amount)
   end
 end
