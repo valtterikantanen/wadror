@@ -33,12 +33,12 @@ describe "Rating" do
     expect(beer1.average_rating).to eq(15.0)
   end
 
-  it "on all ratings page are visible" do
+  it "amounts for most active users on all ratings page are visible" do
     visit ratings_path
 
     expect(Rating.count).to eq(5)
-    expect(page).to have_content "Total ratings: 5"
-    expect(page).to have_content "anonymous 32 Pekka"
+    expect(page).to have_content "Pekka 4 ratings"
+    expect(page).to have_content "Matti 1 rating"
   end
 
   it "visible on user page are user's own ratings" do
