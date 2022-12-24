@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :ratings, only: [:index, :new, :create, :destroy]
   resource :session, only: [:new, :create, :destroy]
   resources :places, only: [:index, :show]
-  resources :styles, only: [:index, :show, :edit]
+  resources :styles, only: [:index, :show, :edit, :destroy]
 
   # Defines the root path route ("/")
   root "breweries#index"
