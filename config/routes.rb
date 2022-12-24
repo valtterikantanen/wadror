@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   resources :memberships, only: [:new, :create, :destroy]
   resources :beer_clubs
-  resources :users
+  resources :users do
+    post "toggle_account_status", on: :member
+  end
   resources :beers
   resources :breweries do
     post "toggle_activity", on: :member
