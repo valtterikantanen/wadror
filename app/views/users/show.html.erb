@@ -17,7 +17,7 @@ Has made <%= pluralize(@user.ratings.count, "rating") -%>
 
 <p>Favorite brewery: <%= @user.favorite_brewery %></p>
 
-<% if current_user.admin %>
+<% if current_user&.admin %>
   <% button_text = @user.closed? ? "Open " : "Close " %>
   <%= link_to(button_text + "account", toggle_account_status_user_path, data: { turbo_method: :post },
               class: "btn btn-danger") %>
