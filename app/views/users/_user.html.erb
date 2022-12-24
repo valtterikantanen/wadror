@@ -4,4 +4,8 @@
     <%= user.username %>
   </p>
 
+  <% if user.closed && current_user.admin %>
+    <span class="badge bg-primary">closed</span>
+  <% end %>
+
 </div>
