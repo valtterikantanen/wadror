@@ -1,12 +1,12 @@
 <h1>Beer clubs</h1>
 
 <div id="beer_clubs">
-  <table class="table table-hover">
+  <table class="table table-stripe table-hover">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Founded</th>
-        <th>City</th>
+        <th><%= link_to "Name", beer_clubs_path(order: "name") %></th>
+        <th><%= link_to "Founded", beer_clubs_path(order: "founded") %></th>
+        <th><%= link_to "City", beer_clubs_path(order: "city") %></th>
       </tr>
     </thead>
     <% @beer_clubs.each do |beer_club| %>
