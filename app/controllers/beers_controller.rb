@@ -1,8 +1,8 @@
 class BeersController < ApplicationController
   before_action :set_beer, only: %i[show edit update destroy]
-  before_action :set_breweries_and_styles_for_template, only: [:new, :edit]
-  before_action :ensure_that_signed_in, except: [:index, :show]
-  before_action :ensure_that_user_is_admin, only: %i[destroy]
+  before_action :set_breweries_and_styles_for_template, only: %i[new edit]
+  before_action :ensure_that_signed_in, except: %i[index show list]
+  before_action :ensure_that_user_is_admin, only: [:destroy]
 
   # GET /beers or /beers.json
   def index
@@ -70,6 +70,9 @@ class BeersController < ApplicationController
       format.html { redirect_to beers_url, notice: "Beer was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def list
   end
 
   private
