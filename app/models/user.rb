@@ -17,22 +17,20 @@ class User < ApplicationRecord
     ratings.order(score: :desc).limit(1).first.beer
   end
 
-  def favorite_by(ratings, criteria)
+  def favorite_by(criteria)
+    return nil if ratings.empty?
+
     ratings_by_criteria = ratings.group_by { |rating| rating.beer.send(criteria) }
                                  .map { |key, value| [key, value.sum(&:score) / value.size] }
     ratings_by_criteria.max_by(&:last).first
   end
 
   def favorite_style
-    return nil if ratings.empty?
-
-    favorite_by(ratings, :style)
+    favorite_by :style
   end
 
   def favorite_brewery
-    return nil if ratings.empty?
-
-    favorite_by(ratings, :brewery)
+    favorite_by :brewery
   end
 
   def self.top(amount)
