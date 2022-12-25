@@ -1,29 +1,54 @@
 const BEERS = {};
+const BREWERIES = {};
 
-const handleResponse = (beers) => {
+const handleResponseBeers = (beers) => {
   BEERS.list = beers;
   BEERS.show();
 };
 
-const createTableRow = (beer) => {
-  const tr = document.createElement("tr");
-  tr.classList.add("tablerow");
-  const beername = tr.appendChild(document.createElement("td"));
-  beername.innerHTML = beer.name;
-  const style = tr.appendChild(document.createElement("td"));
-  style.innerHTML = beer.style.name;
-  const brewery = tr.appendChild(document.createElement("td"));
-  brewery.innerHTML = beer.brewery.name;
-
-  return tr;
+const handleResponseBreweries = (breweries) => {
+  BREWERIES.list = breweries;
+  BREWERIES.show();
 };
 
-BEERS.show = () => {
+const createTableRow = (columns) => {
+  const tr = document.createElement("tr");
+  tr.classList.add("tablerow");
+
+  columns.forEach((column) => {
+    appendChildToTableRow(tr, column);
+  });
+
+  return tr;
+}
+
+const appendChildToTableRow = (tablerow, content) => {
+  const td = tablerow.appendChild(document.createElement("td"));
+  td.innerHTML = content;
+};
+
+const removeTableRows = () => {
   document.querySelectorAll(".tablerow").forEach((el) => el.remove());
+}
+
+BEERS.show = () => {
+  removeTableRows();
   const table = document.getElementById("beertable");
 
   BEERS.list.forEach((beer) => {
-    const tr = createTableRow(beer);
+    const columns = [beer.name, beer.style.name, beer.brewery.name];
+    const tr = createTableRow(columns);
+    table.appendChild(tr);
+  });
+};
+
+BREWERIES.show = () => {
+  removeTableRows();
+  const table = document.getElementById("brewerytable");
+
+  BREWERIES.list.forEach((brewery) => {
+    const columns = [brewery.name, brewery.year, brewery.beers.amount, brewery.active ? "Active" : "Retired"];
+    const tr = createTableRow(columns);
     table.appendChild(tr);
   });
 };
@@ -45,6 +70,24 @@ BEERS.sortByBrewery = () => {
     return a.brewery.name
       .toUpperCase()
       .localeCompare(b.brewery.name.toUpperCase());
+  });
+};
+
+BREWERIES.sortByName = () => {
+  BREWERIES.list.sort((a, b) => {
+    return a.name.toUpperCase().localeCompare(b.name.toUpperCase());
+  });
+};
+
+BREWERIES.sortByYear = () => {
+  BREWERIES.list.sort((a, b) => {
+    return a.year - b.year;
+  });
+};
+
+BREWERIES.sortByAmountOfBeers = () => {
+  BREWERIES.list.sort((a, b) => {
+    return a.beers.amount - b.beers.amount;
   });
 };
 
@@ -71,7 +114,33 @@ const beers = () => {
 
   fetch("beers.json")
     .then((response) => response.json())
-    .then(handleResponse);
+    .then(handleResponseBeers);
 };
 
-export { beers };
+const breweries = () => {
+  if (document.querySelectorAll("#brewerytable").length < 1) return;
+
+  document.getElementById("name").addEventListener("click", (e) => {
+    e.preventDefault();
+    BREWERIES.sortByName();
+    BREWERIES.show();
+  });
+
+  document.getElementById("year").addEventListener("click", (e) => {
+    e.preventDefault();
+    BREWERIES.sortByYear();
+    BREWERIES.show();
+  });
+
+  document.getElementById("amount-of-beers").addEventListener("click", (e) => {
+    e.preventDefault();
+    BREWERIES.sortByAmountOfBeers();
+    BREWERIES.show();
+  });
+
+  fetch("breweries.json")
+    .then((response) => response.json())
+    .then(handleResponseBreweries);
+};
+
+export { beers, breweries };
