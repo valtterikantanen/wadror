@@ -1,5 +1,6 @@
 class Brewery < ApplicationRecord
   include RatingAverage
+  include Top
 
   has_many :beers, dependent: :destroy
   has_many :ratings, through: :beers
@@ -16,10 +17,6 @@ class Brewery < ApplicationRecord
     return unless !year.nil? && (year < 1040 || year > current_year)
 
     errors.add(:year, "must be between 1040 and #{current_year}")
-  end
-
-  def self.top(amount)
-    Brewery.all.sort_by(&:average_rating).reverse.first(amount)
   end
 
   def to_s
