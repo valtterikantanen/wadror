@@ -14,4 +14,8 @@ class ApplicationController < ActionController::Base
   def ensure_that_user_is_admin
     redirect_to root_path, notice: "You need to be an admin to perform this action" unless current_user&.admin
   end
+
+  def expire_brewery_list_cache
+    expire_fragment("brewerylist")
+  end
 end
